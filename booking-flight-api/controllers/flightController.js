@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Flight = require("../models/Flight");
+const {Flight}= require("../models/Flight");
 
 exports.getAllFlight = (req, res) => {
     res.send(Flight);
@@ -8,9 +8,8 @@ exports.getAllFlight = (req, res) => {
 exports.getFlight = (req, res) => {
     try {
         const id = req.params.id * 1;
-        const flght = Flight.find((flight) => flight.id === id);
+        const flight = Flight.find((flight) => flight.id === id);
         if(!flight) throw new Error("Flght does not exist");
-
         return res.send(flight).status(200);
     } catch (err) {
         return res.status(404).json({
@@ -104,3 +103,101 @@ exports.deleteFlight = (req, res) => {
         });
     }
 };
+
+
+
+
+
+
+// RANDOM TRIALLS RELATED TO MY OTHER FLGHTAPI TASK
+
+//get all todos
+// exports.getAllTodos = async(req, res) => {
+//     try {
+//         let todos = await Todos;
+//         res.status(200).json({
+//             message : 'All Todos',
+//             todos,  
+//         });
+//     } catch (err) {
+//         res.status(500).json({message: err});
+//     }
+// };
+
+//get single todo
+// exports.getSingleTodo = async (req, res) => {
+//     try {
+//         let id =  req.params.id
+//         const todo = await Todos.find((Todo) => Todo.id === id); 
+//         res.send(200).json({
+//             message: "Todo is Available",
+//             todo
+//         });
+
+//     } catch (err) {
+//         res.status(500).json({message: err});
+//     }
+// }
+
+//create new todo
+// exports.createTodo = async(req, res) => {
+//     try {
+//         let todo = await req.body;
+//         Todos.id = uuid();
+//         // const newTodo = await Todos.push(todo);
+//         // let Todo = await req.body;
+//         let createTodo = await todo.create(todo);
+        
+
+//         res.status(201).json({
+//             message: 'Todo Created Successfully',
+//             // newTodo,
+//             // todo,
+//             createTodo,
+//             date: new Date().toLocaleDateString(),
+//             time: new Date().toLocaleTimeString()
+//         });
+        
+//     } catch (err) {
+//         res.status(404).json({
+//             message: err.message
+//         });
+//     }
+// };
+
+//update todo
+// exports.updateTodo = async (req, res) => {
+//     try {
+//         let id =  req.params.id;
+//         Newtodo = await req.body;
+//         const Newtodo = Todos.find((Todo) => Todo.id === id); 
+//         // const { title, desccription } = await req.body;
+//         // Todo.title = title;
+//         // Todo.desccription = desccription;
+//         res.status(200).json({
+//             message: 'Todo Updated',
+//             Newtodo
+//         });
+//     } catch (err) {
+//         res.status(404).json({
+//             message: err.message
+//         });
+//     }
+// }
+//delete todo
+// exports.deleteTodo = async(req, res) => {
+//     try {
+//         let id = req.params.id;
+//         const todo = Todos.find((Todo) => Todo.id === id); 
+//         Todos.splice(Todos.indexOf(todo), 1)
+//         res.status(200).json({
+//             message: 'Todo deleted successfully',
+//             todo
+//         })
+
+//     } catch (err) {
+//         res.status(404).json({
+//             message: err.message
+//         });
+//     }
+// };
